@@ -539,8 +539,8 @@ const Index = () => {
                           <CardDescription
                             className={`text-sm ${
                               theme === "dark"
-                                ? "text-gray-400"
-                                : "text-gray-600"
+                                ? "text-gray-300"
+                                : "text-gray-700"
                             }`}
                           >
                             {listing.serverName} •{" "}
@@ -565,8 +565,8 @@ const Index = () => {
                           <div
                             className={`text-xs ${
                               theme === "dark"
-                                ? "text-gray-400"
-                                : "text-gray-500"
+                                ? "text-gray-300"
+                                : "text-gray-600"
                             }`}
                           >
                             {new Date(listing.createdAt).toLocaleDateString()}
@@ -578,7 +578,7 @@ const Index = () => {
                   <CardContent>
                     <p
                       className={`text-sm mb-4 ${
-                        theme === "dark" ? "text-gray-300" : "text-gray-700"
+                        theme === "dark" ? "text-gray-200" : "text-gray-800"
                       }`}
                     >
                       {listing.description}
@@ -592,8 +592,8 @@ const Index = () => {
                             size={14}
                             className={
                               theme === "dark"
-                                ? "text-gray-400"
-                                : "text-gray-500"
+                                ? "text-gray-300"
+                                : "text-gray-600"
                             }
                           />
                           <span>
@@ -606,8 +606,8 @@ const Index = () => {
                             size={14}
                             className={
                               theme === "dark"
-                                ? "text-gray-400"
-                                : "text-gray-500"
+                                ? "text-gray-300"
+                                : "text-gray-600"
                             }
                           />
                           <span>
@@ -689,7 +689,7 @@ const Index = () => {
               <h2 className="text-xl font-bold mb-2">{t.myListings}</h2>
               <p
                 className={`text-sm mb-4 ${
-                  theme === "dark" ? "text-gray-400" : "text-gray-600"
+                  theme === "dark" ? "text-gray-200" : "text-gray-700"
                 }`}
               >
                 Здесь отображаются только ваши объявления с возможностью
@@ -719,8 +719,8 @@ const Index = () => {
                             <CardDescription
                               className={`text-sm ${
                                 theme === "dark"
-                                  ? "text-gray-400"
-                                  : "text-gray-600"
+                                  ? "text-gray-300"
+                                  : "text-gray-700"
                               }`}
                             >
                               {listing.serverName} •{" "}
@@ -747,7 +747,7 @@ const Index = () => {
                     <CardContent>
                       <p
                         className={`text-sm mb-4 ${
-                          theme === "dark" ? "text-gray-300" : "text-gray-700"
+                          theme === "dark" ? "text-gray-200" : "text-gray-800"
                         }`}
                       >
                         {listing.description}
@@ -792,8 +792,8 @@ const Index = () => {
                           <div
                             className={`text-xs ${
                               theme === "dark"
-                                ? "text-gray-400"
-                                : "text-gray-500"
+                                ? "text-gray-300"
+                                : "text-gray-600"
                             }`}
                           >
                             {new Date(listing.createdAt).toLocaleDateString()}
