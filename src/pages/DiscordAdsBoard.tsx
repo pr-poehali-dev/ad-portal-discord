@@ -42,6 +42,7 @@ interface Listing {
   serverLinkClicks: number;
   isPinned: boolean;
   isOwner: boolean;
+  isPremium: boolean;
   createdAt: string;
   pricingDetails: string[];
 }
@@ -65,6 +66,7 @@ const mockListings: Listing[] = [
     serverLinkClicks: 45,
     isPinned: true,
     isOwner: false,
+    isPremium: true,
     createdAt: "7/10/2025",
     pricingDetails: ["1 Day @here - $100", "1 Day @everyone - $150"],
   },
@@ -85,6 +87,7 @@ const mockListings: Listing[] = [
     serverLinkClicks: 23,
     isPinned: false,
     isOwner: false,
+    isPremium: false,
     createdAt: "7/10/2025",
     pricingDetails: ["7 days @everyone - 2500 RUB"],
   },
@@ -105,6 +108,7 @@ const mockListings: Listing[] = [
     serverLinkClicks: 12,
     isPinned: false,
     isOwner: true,
+    isPremium: false,
     createdAt: "7/10/2025",
     pricingDetails: ["7 days @everyone - 2000 RUB"],
   },
@@ -256,6 +260,7 @@ export default function DiscordAdsBoard() {
       serverLinkClicks: 0,
       isPinned: false,
       isOwner: true,
+      isPremium: false,
       createdAt: new Date().toLocaleDateString(),
       pricingDetails: [],
     };
@@ -724,12 +729,52 @@ export default function DiscordAdsBoard() {
           {filteredListings.map((listing) => (
             <Card
               key={listing.id}
-              className={`${theme === "dark" ? "bg-[#36393F] border-gray-600" : "bg-white"} hover:shadow-lg transition-shadow ${listing.isPinned ? "ring-2 ring-[#5865F2]" : ""}`}
+              className={`${
+                listing.isPremium
+                  ? "bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-blue-500/10 border-2 border-transparent bg-clip-padding relative overflow-hidden"
+                  : theme === "dark"
+                    ? "bg-[#36393F] border-gray-600"
+                    : "bg-white"
+              } hover:shadow-lg transition-all duration-300 ${
+                listing.isPremium ? "shadow-2xl" : ""
+              } ${listing.isPinned ? "ring-2 ring-[#5865F2]" : ""}`}
+              style={
+                listing.isPremium
+                  ? {
+                      background:
+                        theme === "dark"
+                          ? "linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(255, 20, 147, 0.1) 25%, rgba(138, 43, 226, 0.1) 50%, rgba(30, 144, 255, 0.1) 75%, rgba(0, 191, 255, 0.1) 100%)"
+                          : "linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 20, 147, 0.1) 25%, rgba(138, 43, 226, 0.1) 50%, rgba(30, 144, 255, 0.1) 75%, rgba(0, 191, 255, 0.1) 100%)",
+                      boxShadow:
+                        theme === "dark"
+                          ? "0 0 30px rgba(139, 69, 19, 0.3), 0 0 60px rgba(255, 20, 147, 0.2)"
+                          : "0 0 30px rgba(255, 215, 0, 0.3), 0 0 60px rgba(255, 20, 147, 0.2)",
+                      border: "1px solid",
+                      borderImage:
+                        theme === "dark"
+                          ? "linear-gradient(135deg, rgba(139, 69, 19, 0.5), rgba(255, 20, 147, 0.5), rgba(138, 43, 226, 0.5), rgba(30, 144, 255, 0.5), rgba(0, 191, 255, 0.5)) 1"
+                          : "linear-gradient(135deg, rgba(255, 215, 0, 0.5), rgba(255, 20, 147, 0.5), rgba(138, 43, 226, 0.5), rgba(30, 144, 255, 0.5), rgba(0, 191, 255, 0.5)) 1",
+                    }
+                  : {}
+              }
             >
               <CardHeader className="pb-3">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-2">
+                      {listing.isPremium && (
+                        <Badge
+                          variant="secondary"
+                          className={`${
+                            theme === "dark"
+                              ? "bg-gradient-to-r from-yellow-600 to-orange-600 text-white border-yellow-500"
+                              : "bg-gradient-to-r from-yellow-400 to-orange-400 text-white border-yellow-300"
+                          } shadow-lg`}
+                        >
+                          <Icon name="Crown" size={12} className="mr-1" />
+                          Premium
+                        </Badge>
+                      )}
                       {listing.isPinned && (
                         <Badge
                           variant="secondary"

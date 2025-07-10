@@ -51,6 +51,7 @@ interface Listing {
   clicks: number;
   isPinned: boolean;
   isOwner: boolean;
+  isPremium: boolean;
   createdAt: string;
 }
 
@@ -67,6 +68,16 @@ const Index = () => {
     "listings",
   );
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+
+  const togglePremium = (listingId: string) => {
+    // В реальном приложении здесь будет API-вызов
+    console.log(`Toggling premium for listing ${listingId}`);
+  };
+
+  const togglePin = (listingId: string) => {
+    // В реальном приложении здесь будет API-вызов
+    console.log(`Toggling pin for listing ${listingId}`);
+  };
 
   const categories = [
     { id: "all", name: { ru: "Все", en: "All" } },
@@ -97,6 +108,7 @@ const Index = () => {
       clicks: 34,
       isPinned: true,
       isOwner: true,
+      isPremium: true,
       createdAt: "2025-01-07",
     },
     {
@@ -115,6 +127,7 @@ const Index = () => {
       clicks: 27,
       isPinned: false,
       isOwner: false,
+      isPremium: false,
       createdAt: "2025-01-06",
     },
     {
@@ -133,6 +146,7 @@ const Index = () => {
       clicks: 19,
       isPinned: false,
       isOwner: false,
+      isPremium: false,
       createdAt: "2025-01-05",
     },
   ];
@@ -155,6 +169,8 @@ const Index = () => {
       delete: "Удалить",
       pin: "Закрепить",
       unpin: "Открепить",
+      premium: "Премиум",
+      unpremium: "Снять премиум",
       views: "просмотров",
       clicks: "кликов",
       members: "участников",
@@ -183,6 +199,8 @@ const Index = () => {
       delete: "Delete",
       pin: "Pin",
       unpin: "Unpin",
+      premium: "Premium",
+      unpremium: "Remove Premium",
       views: "views",
       clicks: "clicks",
       members: "members",
@@ -518,7 +536,34 @@ const Index = () => {
               {filteredListings.map((listing) => (
                 <Card
                   key={listing.id}
-                  className={`${theme === "dark" ? "bg-[#36393F] border-gray-600" : "bg-white"} hover:shadow-lg transition-shadow`}
+                  className={`${
+                    listing.isPremium
+                      ? "bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-blue-500/10 border-2 border-transparent bg-clip-padding relative overflow-hidden"
+                      : theme === "dark"
+                        ? "bg-[#36393F] border-gray-600"
+                        : "bg-white"
+                  } hover:shadow-lg transition-all duration-300 ${
+                    listing.isPremium ? "shadow-2xl" : ""
+                  }`}
+                  style={
+                    listing.isPremium
+                      ? {
+                          background:
+                            theme === "dark"
+                              ? "linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(255, 20, 147, 0.1) 25%, rgba(138, 43, 226, 0.1) 50%, rgba(30, 144, 255, 0.1) 75%, rgba(0, 191, 255, 0.1) 100%)"
+                              : "linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 20, 147, 0.1) 25%, rgba(138, 43, 226, 0.1) 50%, rgba(30, 144, 255, 0.1) 75%, rgba(0, 191, 255, 0.1) 100%)",
+                          boxShadow:
+                            theme === "dark"
+                              ? "0 0 30px rgba(139, 69, 19, 0.3), 0 0 60px rgba(255, 20, 147, 0.2)"
+                              : "0 0 30px rgba(255, 215, 0, 0.3), 0 0 60px rgba(255, 20, 147, 0.2)",
+                          border: "1px solid",
+                          borderImage:
+                            theme === "dark"
+                              ? "linear-gradient(135deg, rgba(139, 69, 19, 0.5), rgba(255, 20, 147, 0.5), rgba(138, 43, 226, 0.5), rgba(30, 144, 255, 0.5), rgba(0, 191, 255, 0.5)) 1"
+                              : "linear-gradient(135deg, rgba(255, 215, 0, 0.5), rgba(255, 20, 147, 0.5), rgba(138, 43, 226, 0.5), rgba(30, 144, 255, 0.5), rgba(0, 191, 255, 0.5)) 1",
+                        }
+                      : {}
+                  }
                 >
                   <CardHeader>
                     <div className="flex items-start justify-between">
@@ -543,6 +588,19 @@ const Index = () => {
                         </div>
                       </div>
                       <div className="flex items-center space-x-2">
+                        {listing.isPremium && (
+                          <Badge
+                            variant="secondary"
+                            className={`${
+                              theme === "dark"
+                                ? "bg-gradient-to-r from-yellow-600 to-orange-600 text-white border-yellow-500"
+                                : "bg-gradient-to-r from-yellow-400 to-orange-400 text-white border-yellow-300"
+                            } shadow-lg`}
+                          >
+                            <Icon name="Crown" size={12} className="mr-1" />
+                            Premium
+                          </Badge>
+                        )}
                         {listing.isPinned && (
                           <Badge
                             variant="secondary"
@@ -619,7 +677,35 @@ const Index = () => {
                       <div className="flex items-center space-x-2">
                         {adminMode && (
                           <>
-                            <Button variant="ghost" size="sm">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => togglePremium(listing.id)}
+                              title={
+                                listing.isPremium ? t.unpremium : t.premium
+                              }
+                              className={
+                                listing.isPremium
+                                  ? "text-yellow-500 hover:text-yellow-600"
+                                  : ""
+                              }
+                            >
+                              <Icon
+                                name={listing.isPremium ? "CrownOff" : "Crown"}
+                                size={14}
+                              />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => togglePin(listing.id)}
+                              title={listing.isPinned ? t.unpin : t.pin}
+                              className={
+                                listing.isPinned
+                                  ? "text-yellow-500 hover:text-yellow-600"
+                                  : ""
+                              }
+                            >
                               <Icon
                                 name={listing.isPinned ? "PinOff" : "Pin"}
                                 size={14}
