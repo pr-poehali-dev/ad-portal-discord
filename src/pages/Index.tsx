@@ -544,7 +544,7 @@ const Index = () => {
                         : "bg-white"
                   } hover:shadow-lg transition-all duration-300 ${
                     listing.isPremium ? "shadow-2xl" : ""
-                  }`}
+                  } p-4`}
                   style={
                     listing.isPremium
                       ? {
@@ -565,29 +565,15 @@ const Index = () => {
                       : {}
                   }
                 >
-                  <CardHeader>
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-[#5865F2] rounded-lg flex items-center justify-center text-white text-lg">
-                          {listing.avatar}
-                        </div>
-                        <div>
-                          <CardTitle className="text-lg">
-                            {listing.title}
-                          </CardTitle>
-                          <CardDescription
-                            className={`text-sm ${
-                              theme === "dark"
-                                ? "text-gray-300"
-                                : "text-gray-700"
-                            }`}
-                          >
-                            {listing.serverName} •{" "}
-                            {listing.memberCount.toLocaleString()} {t.members}
-                          </CardDescription>
-                        </div>
-                      </div>
-                      <div className="flex items-center space-x-2">
+                  {/* Header Section */}
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex-1">
+                      <div className="flex items-center space-x-2 mb-2">
+                        <h3
+                          className={`text-lg font-semibold ${theme === "dark" ? "text-white" : "text-gray-900"}`}
+                        >
+                          {listing.title}
+                        </h3>
                         {listing.isPremium && (
                           <Badge
                             variant="secondary"
@@ -614,150 +600,194 @@ const Index = () => {
                             Pinned
                           </Badge>
                         )}
-                        <div className="text-right">
-                          <div className="text-lg font-bold text-[#5865F2]">
-                            {listing.price.toLocaleString()} {listing.currency}
-                          </div>
-                          <div
-                            className={`text-xs ${
-                              theme === "dark"
-                                ? "text-gray-300"
-                                : "text-gray-600"
-                            }`}
-                          >
-                            {new Date(listing.createdAt).toLocaleDateString()}
-                          </div>
-                        </div>
                       </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p
-                      className={`text-sm mb-4 ${
-                        theme === "dark" ? "text-gray-200" : "text-gray-800"
-                      }`}
-                    >
-                      {listing.description}
-                    </p>
-
-                    <div className="flex items-center justify-between">
-                      <div
-                        className={`flex items-center space-x-4 text-sm ${theme === "dark" ? "text-white" : "text-gray-600"}`}
-                      >
-                        <div className="flex items-center space-x-1">
-                          <Icon
-                            name="Eye"
-                            size={14}
-                            className={
-                              theme === "dark"
-                                ? "text-gray-300"
-                                : "text-gray-600"
-                            }
-                          />
-                          <span>
-                            {listing.views} {t.views}
-                          </span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <Icon
-                            name="MousePointer"
-                            size={14}
-                            className={
-                              theme === "dark"
-                                ? "text-gray-300"
-                                : "text-gray-600"
-                            }
-                          />
-                          <span>
-                            {listing.clicks} {t.clicks}
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center space-x-2">
-                        {adminMode && (
-                          <>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => togglePremium(listing.id)}
-                              title={
-                                listing.isPremium ? t.unpremium : t.premium
-                              }
-                              className={
-                                listing.isPremium
-                                  ? "text-yellow-500 hover:text-yellow-600"
-                                  : ""
-                              }
-                            >
-                              <Icon
-                                name={listing.isPremium ? "CrownOff" : "Crown"}
-                                size={14}
-                              />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => togglePin(listing.id)}
-                              title={listing.isPinned ? t.unpin : t.pin}
-                              className={
-                                listing.isPinned
-                                  ? "text-yellow-500 hover:text-yellow-600"
-                                  : ""
-                              }
-                            >
-                              <Icon
-                                name={listing.isPinned ? "PinOff" : "Pin"}
-                                size={14}
-                              />
-                            </Button>
-                            <Button variant="ghost" size="sm">
-                              <Icon name="Edit" size={14} />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              className="text-red-500 hover:text-red-600"
-                            >
-                              <Icon name="Trash2" size={14} />
-                            </Button>
-                          </>
-                        )}
+                      <div className="flex items-center space-x-2 text-sm text-blue-400">
+                        <span>{listing.serverName}</span>
                         <Button
+                          variant="link"
                           size="sm"
-                          className="bg-[#5865F2] hover:bg-[#4752C4] text-white"
+                          className="text-blue-400 hover:text-blue-300 p-0 h-auto text-sm"
+                          onClick={() =>
+                            window.open(listing.serverLink, "_blank")
+                          }
                         >
-                          {t.contact}
+                          {listing.serverLink}
                         </Button>
                       </div>
-                    </div>
-
-                    <Separator
-                      className={`my-3 ${
-                        theme === "dark" ? "bg-gray-600" : "bg-gray-200"
-                      }`}
-                    />
-
-                    <div className="flex items-center justify-between">
-                      <Badge variant="outline" className="text-xs">
-                        {
-                          categories.find((c) => c.id === listing.category)
-                            ?.name[language]
-                        }
-                      </Badge>
-                      <Button
-                        variant="link"
-                        size="sm"
-                        className="text-[#5865F2] hover:text-[#4752C4] p-0 h-auto"
-                        onClick={() =>
-                          window.open(listing.serverLink, "_blank")
-                        }
+                      <div
+                        className={`text-xs ${theme === "dark" ? "text-gray-400" : "text-gray-600"} mt-1`}
                       >
-                        {listing.serverName}
-                        <Icon name="ExternalLink" size={12} className="ml-1" />
+                        {new Date(listing.createdAt).toLocaleDateString()}
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-2xl font-bold text-[#5865F2]">
+                        {listing.price.toLocaleString()} {listing.currency}
+                      </div>
+                      <Button
+                        size="sm"
+                        className="bg-[#5865F2] hover:bg-[#4752C4] text-white mt-2"
+                      >
+                        <Icon name="MessageCircle" size={14} className="mr-1" />
+                        {t.contact}
                       </Button>
                     </div>
-                  </CardContent>
+                  </div>
+                  {/* Description Section */}
+                  <div className="mb-3">
+                    <h4
+                      className={`text-sm font-medium ${theme === "dark" ? "text-gray-300" : "text-gray-600"} mb-1`}
+                    >
+                      Ping Prices
+                    </h4>
+                    <div
+                      className={`text-sm ${theme === "dark" ? "text-gray-300" : "text-gray-700"} space-y-1`}
+                    >
+                      <div>- 1 Day @here - $70</div>
+                      <div>- 1 Day @everyone - $100</div>
+                    </div>
+                  </div>
+
+                  <div className="mb-3">
+                    <h4
+                      className={`text-sm font-medium ${theme === "dark" ? "text-gray-300" : "text-gray-600"} mb-1`}
+                    >
+                      Bundle Deals
+                    </h4>
+                    <div
+                      className={`text-sm ${theme === "dark" ? "text-gray-300" : "text-gray-700"} space-y-1`}
+                    >
+                      <div>- 7d @everyone with Ping On Join - $200</div>
+                      <div>- 7d @everyone with Join DM - $250</div>
+                      <div>
+                        - 7d @everyone with Ping On Join & Join DM - $300
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mb-4">
+                    <div
+                      className={`text-sm ${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}
+                    >
+                      • {listing.description}
+                    </div>
+                  </div>
+
+                  {/* Bottom Section */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-6 h-6 bg-[#5865F2] rounded flex items-center justify-center text-white text-xs">
+                        {listing.avatar}
+                      </div>
+                      <div className="flex items-center space-x-4 text-sm">
+                        <span
+                          className={`${theme === "dark" ? "text-white" : "text-gray-900"} font-medium`}
+                        >
+                          {listing.serverName}
+                        </span>
+                        <span
+                          className={`${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}
+                        >
+                          • CHAT • SOCIAL
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      className={`flex items-center space-x-4 text-sm ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}
+                    >
+                      <div className="flex items-center space-x-1">
+                        <Icon name="Users" size={14} />
+                        <span>{listing.memberCount.toLocaleString()}</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <Icon name="MessageCircle" size={14} />
+                        <span>
+                          {
+                            categories.find((c) => c.id === listing.category)
+                              ?.name[language]
+                          }
+                        </span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <Icon name="Eye" size={14} />
+                        <span>{listing.views}</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <Icon name="Heart" size={14} />
+                        <span>{listing.favoriteCount}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Admin and Action Buttons */}
+                  <div className="flex items-center justify-end space-x-2 mt-3">
+                    {adminMode && (
+                      <>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => togglePremium(listing.id)}
+                          title={listing.isPremium ? t.unpremium : t.premium}
+                          className={
+                            listing.isPremium
+                              ? "text-yellow-500 hover:text-yellow-600"
+                              : ""
+                          }
+                        >
+                          <Icon
+                            name={listing.isPremium ? "CrownOff" : "Crown"}
+                            size={14}
+                          />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => togglePin(listing.id)}
+                          title={listing.isPinned ? t.unpin : t.pin}
+                          className={
+                            listing.isPinned
+                              ? "text-yellow-500 hover:text-yellow-600"
+                              : ""
+                          }
+                        >
+                          <Icon
+                            name={listing.isPinned ? "PinOff" : "Pin"}
+                            size={14}
+                          />
+                        </Button>
+                        <Button variant="ghost" size="sm">
+                          <Icon name="Edit" size={14} />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-red-500 hover:text-red-600"
+                        >
+                          <Icon name="Trash2" size={14} />
+                        </Button>
+                      </>
+                    )}
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => toggleFavorite(listing.id)}
+                      title={
+                        listing.isFavorited
+                          ? t.removeFromFavorites
+                          : t.addToFavorites
+                      }
+                      className={
+                        listing.isFavorited
+                          ? "text-red-500 hover:text-red-600"
+                          : ""
+                      }
+                    >
+                      <Icon
+                        name={listing.isFavorited ? "Heart" : "HeartOff"}
+                        size={14}
+                      />
+                    </Button>
+                  </div>
                 </Card>
               ))}
             </div>
