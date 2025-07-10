@@ -750,7 +750,9 @@ export default function DiscordAdsBoard() {
                       >
                         {listing.serverName}
                       </button>
-                      <span className="text-sm text-gray-500">
+                      <span
+                        className={`text-sm ${theme === "dark" ? "text-gray-300" : "text-gray-500"}`}
+                      >
                         {listing.serverLink}
                       </span>
                     </div>
@@ -759,7 +761,9 @@ export default function DiscordAdsBoard() {
                     <div className="text-2xl font-bold text-[#5865F2]">
                       {listing.price.toLocaleString()} {listing.currency}
                     </div>
-                    <div className="text-sm text-gray-500">
+                    <div
+                      className={`text-sm ${theme === "dark" ? "text-gray-300" : "text-gray-500"}`}
+                    >
                       {listing.createdAt}
                     </div>
                   </div>
@@ -779,7 +783,9 @@ export default function DiscordAdsBoard() {
                     />
                     <div>
                       <div className="font-medium">{listing.serverName}</div>
-                      <div className="text-sm text-gray-500">
+                      <div
+                        className={`text-sm ${theme === "dark" ? "text-gray-300" : "text-gray-500"}`}
+                      >
                         <Icon name="Users" size={12} className="inline mr-1" />
                         {listing.memberCount.toLocaleString()} •{" "}
                         {listing.category}
@@ -789,7 +795,9 @@ export default function DiscordAdsBoard() {
                   <Badge variant="secondary">{listing.category}</Badge>
                 </div>
 
-                <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                <div
+                  className={`flex items-center justify-between text-sm ${theme === "dark" ? "text-gray-300" : "text-gray-500"} mb-4`}
+                >
                   <div className="flex items-center space-x-4">
                     <div className="flex items-center space-x-1">
                       <Icon name="Users" size={14} />
