@@ -429,10 +429,8 @@ const Index = () => {
                       }
                       className={`cursor-pointer ${
                         selectedCategory === category.id
-                          ? "bg-[#5865F2] text-white"
-                          : theme === "dark"
-                            ? "border-gray-600 hover:bg-[#36393F]"
-                            : "hover:bg-gray-100"
+                          ? "bg-[#5865F2] text-white hover:bg-[#4752C4]"
+                          : ""
                       }`}
                       onClick={() => setSelectedCategory(category.id)}
                     >
@@ -450,11 +448,7 @@ const Index = () => {
                     <Badge
                       key={curr}
                       variant="outline"
-                      className={`cursor-pointer ${
-                        theme === "dark"
-                          ? "border-gray-600 hover:bg-[#36393F]"
-                          : "hover:bg-gray-100"
-                      }`}
+                      className="cursor-pointer"
                     >
                       {curr}
                     </Badge>
@@ -552,7 +546,11 @@ const Index = () => {
                         {listing.isPinned && (
                           <Badge
                             variant="secondary"
-                            className="bg-yellow-100 text-yellow-800"
+                            className={`${
+                              theme === "dark"
+                                ? "bg-yellow-900 text-yellow-200 border-yellow-700"
+                                : "bg-yellow-100 text-yellow-800 border-yellow-300"
+                            }`}
                           >
                             <Icon name="Pin" size={12} className="mr-1" />
                             Pinned
@@ -655,14 +653,7 @@ const Index = () => {
                     />
 
                     <div className="flex items-center justify-between">
-                      <Badge
-                        variant="outline"
-                        className={`text-xs ${
-                          theme === "dark"
-                            ? "border-gray-600"
-                            : "border-gray-300"
-                        }`}
-                      >
+                      <Badge variant="outline" className="text-xs">
                         {
                           categories.find((c) => c.id === listing.category)
                             ?.name[language]

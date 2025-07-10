@@ -795,12 +795,7 @@ export default function DiscordAdsBoard() {
                       </div>
                     </div>
                   </div>
-                  <Badge
-                    variant="secondary"
-                    className={theme === "dark" ? "text-white" : ""}
-                  >
-                    {listing.category}
-                  </Badge>
+                  <Badge variant="secondary">{listing.category}</Badge>
                 </div>
 
                 <div
