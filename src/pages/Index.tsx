@@ -79,6 +79,11 @@ const Index = () => {
     console.log(`Toggling pin for listing ${listingId}`);
   };
 
+  const toggleFavorite = (listingId: string) => {
+    // В реальном приложении здесь будет API-вызов
+    console.log(`Toggling favorite for listing ${listingId}`);
+  };
+
   const categories = [
     { id: "all", name: { ru: "Все", en: "All" } },
     { id: "gaming", name: { ru: "Игры", en: "Gaming" } },
