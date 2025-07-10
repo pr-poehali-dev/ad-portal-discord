@@ -585,7 +585,9 @@ const Index = () => {
                     </p>
 
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-4 text-sm">
+                      <div
+                        className={`flex items-center space-x-4 text-sm ${theme === "dark" ? "text-white" : "text-gray-600"}`}
+                      >
                         <div className="flex items-center space-x-1">
                           <Icon
                             name="Eye"
