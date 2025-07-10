@@ -35,6 +35,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Icon from "@/components/ui/icon";
+import AnimatedBackground from "@/components/AnimatedBackground";
 
 interface Listing {
   id: string;
@@ -227,11 +228,12 @@ const Index = () => {
 
   return (
     <div
-      className={`min-h-screen ${theme === "dark" ? "bg-[#2C2F33] text-white" : "bg-gray-50 text-gray-900"}`}
+      className={`min-h-screen relative ${theme === "dark" ? "text-white" : "text-gray-900"}`}
     >
+      <AnimatedBackground isDark={theme === "dark"} />
       {/* Header */}
       <header
-        className={`border-b ${theme === "dark" ? "border-gray-700 bg-[#23272A]" : "border-gray-200 bg-white"} px-4 py-3`}
+        className={`border-b ${theme === "dark" ? "border-gray-700 bg-[#23272A]/90 backdrop-blur-sm" : "border-gray-200 bg-white/90 backdrop-blur-sm"} px-4 py-3 relative z-10`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-2">
@@ -287,7 +289,7 @@ const Index = () => {
                 </Button>
               </DialogTrigger>
               <DialogContent
-                className={`${theme === "dark" ? "bg-[#2C2F33] text-white border-gray-600" : "bg-white"}`}
+                className={`${theme === "dark" ? "bg-[#2C2F33]/95 backdrop-blur-sm text-white border-gray-600" : "bg-white/95 backdrop-blur-sm"}`}
               >
                 <DialogHeader>
                   <DialogTitle>{t.addNewListing}</DialogTitle>
@@ -386,7 +388,7 @@ const Index = () => {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 py-6">
+      <div className="max-w-7xl mx-auto px-4 py-6 relative z-10">
         {/* Navigation Tabs */}
         <Tabs
           value={activeTab}
@@ -396,7 +398,7 @@ const Index = () => {
           className="mb-6"
         >
           <TabsList
-            className={`${theme === "dark" ? "bg-[#36393F] border-gray-600" : "bg-white border-gray-200"} border`}
+            className={`${theme === "dark" ? "bg-[#36393F]/90 backdrop-blur-sm border-gray-600" : "bg-white/90 backdrop-blur-sm border-gray-200"} border`}
           >
             <TabsTrigger
               value="listings"
@@ -524,7 +526,7 @@ const Index = () => {
               {filteredListings.map((listing) => (
                 <Card
                   key={listing.id}
-                  className={`${theme === "dark" ? "bg-[#36393F] border-gray-600" : "bg-white"} hover:shadow-lg transition-shadow`}
+                  className={`${theme === "dark" ? "bg-[#36393F]/90 backdrop-blur-sm border-gray-600" : "bg-white/90 backdrop-blur-sm"} hover:shadow-lg transition-shadow`}
                 >
                   <CardHeader>
                     <div className="flex items-start justify-between">
@@ -704,7 +706,7 @@ const Index = () => {
                 .map((listing) => (
                   <Card
                     key={listing.id}
-                    className={`${theme === "dark" ? "bg-[#36393F] border-gray-600" : "bg-white"} hover:shadow-lg transition-shadow`}
+                    className={`${theme === "dark" ? "bg-[#36393F]/90 backdrop-blur-sm border-gray-600" : "bg-white/90 backdrop-blur-sm"} hover:shadow-lg transition-shadow`}
                   >
                     <CardHeader>
                       <div className="flex items-start justify-between">
