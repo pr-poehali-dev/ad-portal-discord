@@ -784,7 +784,7 @@ export default function DiscordAdsBoard() {
                     <div>
                       <div className="font-medium">{listing.serverName}</div>
                       <div
-                        className={`text-sm ${theme === "dark" ? "text-gray-300" : "text-gray-500"}`}
+                        className={`text-sm ${theme === "dark" ? "text-white" : "text-gray-500"}`}
                       >
                         <Icon name="Users" size={12} className="inline mr-1" />
                         {listing.memberCount.toLocaleString()} •{" "}
@@ -796,7 +796,7 @@ export default function DiscordAdsBoard() {
                 </div>
 
                 <div
-                  className={`flex items-center justify-between text-sm ${theme === "dark" ? "text-gray-300" : "text-gray-500"} mb-4`}
+                  className={`flex items-center justify-between text-sm ${theme === "dark" ? "text-white" : "text-gray-500"} mb-4`}
                 >
                   <div className="flex items-center space-x-4">
                     <div className="flex items-center space-x-1">
