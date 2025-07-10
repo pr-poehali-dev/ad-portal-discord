@@ -626,7 +626,10 @@ export default function DiscordAdsBoard() {
                       handleCategoryChange(category, checked as boolean)
                     }
                   />
-                  <Label htmlFor={category} className="text-sm">
+                  <Label
+                    htmlFor={category}
+                    className={`text-sm ${theme === "dark" ? "text-white" : "text-gray-900"}`}
+                  >
                     {category}
                   </Label>
                 </div>
@@ -792,7 +795,12 @@ export default function DiscordAdsBoard() {
                       </div>
                     </div>
                   </div>
-                  <Badge variant="secondary">{listing.category}</Badge>
+                  <Badge
+                    variant="secondary"
+                    className={theme === "dark" ? "text-white" : ""}
+                  >
+                    {listing.category}
+                  </Badge>
                 </div>
 
                 <div
