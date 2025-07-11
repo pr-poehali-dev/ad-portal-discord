@@ -530,6 +530,105 @@ const Index = () => {
               </div>
             </div>
 
+            {/* Promo Card */}
+            <div className="mb-6">
+              <div className="bg-gradient-to-r from-orange-500 to-pink-500 rounded-lg p-6 relative overflow-hidden">
+                <div className="absolute top-4 right-4 text-white">
+                  <div className="text-3xl font-bold">-35%</div>
+                  <div className="text-sm opacity-90">Limited Time</div>
+                </div>
+
+                <div className="flex items-center space-x-2 mb-4">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 text-white text-sm font-medium">
+                    ⚡ SPECIAL PROMO
+                  </div>
+                  <div className="text-white text-xl font-bold">
+                    35% OFF All Ad Placements!
+                  </div>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 mb-4">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-16 h-16 bg-gray-800 rounded-lg flex items-center justify-center">
+                      <Icon name="Gamepad2" size={32} className="text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center space-x-2 mb-1">
+                        <h3 className="text-white font-bold text-lg">
+                          Elite Gaming Hub
+                        </h3>
+                        <div className="bg-pink-500/70 backdrop-blur-sm rounded-full px-2 py-1 text-white text-xs">
+                          gaming
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-2 text-white/90 text-sm">
+                        <Icon name="Users" size={14} />
+                        <span>52 847 members</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mb-4">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <Icon name="Gamepad2" size={16} className="text-white" />
+                    <h4 className="text-white font-bold">
+                      Elite Gaming Community
+                    </h4>
+                  </div>
+                  <p className="text-white/90 text-sm">
+                    Join our premium Discord server with exclusive gaming
+                    content, tournaments, and active community of 50K+ members!
+                  </p>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4 text-white/90 text-sm">
+                    <div className="flex items-center space-x-1">
+                      <Icon name="Eye" size={14} />
+                      <span>15 420 views</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Icon name="MousePointer" size={14} />
+                      <span>2 380 clicks</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <Button
+                      variant="outline"
+                      className="bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30"
+                    >
+                      <Icon name="ExternalLink" size={16} className="mr-2" />
+                      Visit Server
+                    </Button>
+                    <Button className="bg-white text-orange-500 hover:bg-white/90 font-medium">
+                      <Icon name="MessageCircle" size={16} className="mr-2" />
+                      Contact Owner
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between mt-4">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-white/70 text-sm line-through">
+                      2500 RUB
+                    </span>
+                    <span className="text-white text-2xl font-bold">
+                      1625 RUB
+                    </span>
+                    <span className="text-white/90 text-sm">Save 875 RUB</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 text-center">
+                <p className="text-white font-medium bg-gradient-to-r from-orange-500 to-pink-500 rounded-lg py-2 px-4">
+                  Hurry up! This offer is valid for a limited time only. Create
+                  your ad now and save 35%!
+                </p>
+              </div>
+            </div>
+
             {/* Listings */}
             <div
               className={`grid gap-4 ${
